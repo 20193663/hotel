@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Room extends StatefulWidget {
   DateTime checkin,checkout;
@@ -30,6 +31,7 @@ class MyItem {
 }
 
 class _RoomState extends State<Room> {
+
   final List<MyItem> _items = <MyItem>[
     MyItem(
         header: "Single Room",
@@ -55,7 +57,10 @@ class _RoomState extends State<Room> {
       content: Text(" Confirm or Discared"),
       actions: [
         ElevatedButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed:() {
+            senddata();
+            Navigator.pushNamed(context, "home");
+          },
           child: Text("Confirm"),
         ),
         ElevatedButton(
@@ -69,7 +74,19 @@ class _RoomState extends State<Room> {
       builder: (context) => alertDialog,
     );
   }
+  final DatabaseReference _databaseReference= FirebaseDatabase.instance.ref().child("MY_services");
 
+  senddata(){
+    _databaseReference.push().set({"checkin":"${widget.checkin}",
+      "checkout":"${widget.checkout}",
+      "extra":"${widget.extra}",
+      "view":"${widget.view}",
+      "adult":"${widget.Sadult}",
+      "children":"${widget.Schildren}",
+      "type":"${widget.extra}",
+    });
+    //${widget.email.splitMapJoin("@")[0]}
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
