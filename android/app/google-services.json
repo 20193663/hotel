@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1036355878943",
+    "firebase_url": "https://hotel-ecfe0-default-rtdb.firebaseio.com",
     "project_id": "hotel-ecfe0",
     "storage_bucket": "hotel-ecfe0.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "1036355878943-eg38s477e1ks94s6d3tdfgac1l976n6d.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1036355878943-uinpt60mhq7h0sbhdmb5ukf6otqlhraj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hotel"
+              }
             }
           ]
         }

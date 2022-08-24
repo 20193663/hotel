@@ -77,7 +77,8 @@ class _RoomState extends State<Room> {
   final DatabaseReference _databaseReference= FirebaseDatabase.instance.ref().child("MY_services");
 
   senddata(){
-    _databaseReference.push().set({"checkin":"${widget.checkin}",
+    _databaseReference.push().set({
+      "hotel":"${widget.checkin}",
       "checkout":"${widget.checkout}",
       "extra":"${widget.extra}",
       "view":"${widget.view}",
@@ -85,7 +86,7 @@ class _RoomState extends State<Room> {
       "children":"${widget.Schildren}",
       "type":"${widget.extra}",
     });
-    //${widget.email.splitMapJoin("@")[0]}
+    print("send data is successes");
   }
   @override
   Widget build(BuildContext context) {

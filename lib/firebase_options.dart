@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,11 +46,22 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD3oJuC2D6mjWbgW6Q19kF-07VlzRdJ10o',
+    appId: '1:1036355878943:web:51a11f8971d97a1374d52a',
+    messagingSenderId: '1036355878943',
+    projectId: 'hotel-ecfe0',
+    authDomain: 'hotel-ecfe0.firebaseapp.com',
+    databaseURL: 'https://hotel-ecfe0-default-rtdb.firebaseio.com',
+    storageBucket: 'hotel-ecfe0.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCRcDT9-uTIaFqcMrGJS6ZNEb3BVT_Y3cg',
     appId: '1:1036355878943:android:673cfd6b48efbc6c74d52a',
     messagingSenderId: '1036355878943',
     projectId: 'hotel-ecfe0',
+    databaseURL: 'https://hotel-ecfe0-default-rtdb.firebaseio.com',
     storageBucket: 'hotel-ecfe0.appspot.com',
   );
 
@@ -62,6 +70,7 @@ class DefaultFirebaseOptions {
     appId: '1:1036355878943:ios:d94e9161d2cbb09b74d52a',
     messagingSenderId: '1036355878943',
     projectId: 'hotel-ecfe0',
+    databaseURL: 'https://hotel-ecfe0-default-rtdb.firebaseio.com',
     storageBucket: 'hotel-ecfe0.appspot.com',
     iosClientId: '1036355878943-uinpt60mhq7h0sbhdmb5ukf6otqlhraj.apps.googleusercontent.com',
     iosBundleId: 'com.example.hotel',
