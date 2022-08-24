@@ -88,6 +88,7 @@ class _RoomState extends State<Room> {
       FirebaseDatabase.instance.ref().child("/hotel");
 
   senddata() {
+    try{
     _databaseReference.push().set({
       "checkin": "${widget.checkin}",
       "checkout": "${widget.checkout}",
@@ -97,6 +98,7 @@ class _RoomState extends State<Room> {
       "children": "${widget.Schildren}",
       "type": "${roomType}",
     });
+  }catch(e){print("the error is $e");}
   }
 
   @override
