@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hotel/home.dart';
+import 'RoomS.dart';
 import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.dark(),
       routes: {
         'home': (context) => home(),
-        'home': (context) => home(),
+        //'room': (context) => Room(),
       },
     );
   }
