@@ -3,11 +3,19 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class Room extends StatefulWidget {
-  DateTime checkin,checkout;
-  String extra,view;
+  DateTime checkin, checkout;
+  String extra, view;
   double Sadult;
   double Schildren;
-   Room({Key? key ,required this.checkin,required this.checkout,required this.Sadult,required this.Schildren,required this.extra,required this.view,}) : super(key: key);
+  Room({
+    Key? key,
+    required this.checkin,
+    required this.checkout,
+    required this.Sadult,
+    required this.Schildren,
+    required this.extra,
+    required this.view,
+  }) : super(key: key);
 
   @override
   State<Room> createState() => _RoomState();
@@ -31,7 +39,7 @@ class MyItem {
 }
 
 class _RoomState extends State<Room> {
-  String roomType="";
+  String roomType = "";
   final List<MyItem> _items = <MyItem>[
     MyItem(
         header: "Single Room",
@@ -57,7 +65,7 @@ class _RoomState extends State<Room> {
       content: Text(" Confirm or Discared"),
       actions: [
         ElevatedButton(
-          onPressed:() {
+          onPressed: () {
             senddata();
             Navigator.pushNamed(context, "home");
           },
@@ -74,20 +82,23 @@ class _RoomState extends State<Room> {
       builder: (context) => alertDialog,
     );
   }
-  final DatabaseReference _databaseReference= FirebaseDatabase.instance.ref().child("MY_services");
 
-  senddata(){
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.ref().child("hotel");
+
+  senddata() {
     _databaseReference.push().set({
-      "hotel":"${widget.checkin}",
-      "checkout":"${widget.checkout}",
-      "extra":"${widget.extra}",
-      "view":"${widget.view}",
-      "adult":"${widget.Sadult}",
-      "children":"${widget.Schildren}",
-      "type":"${roomType}",
+      "checkin": "${widget.checkin}",
+      "checkout": "${widget.checkout}",
+      "extra": "${widget.extra}",
+      "view": "${widget.view}",
+      "adult": "${widget.Sadult}",
+      "children": "${widget.Schildren}",
+      "type": "${roomType}",
     });
     print("send data is successes");
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,22 +125,17 @@ class _RoomState extends State<Room> {
                 return ExpansionPanel(
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return ListTile(
-                      title: Row(
-                        children: [
-                          Text(item.header),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Switch(
-                            value: item.sw,
-                            onChanged: (value) {
-                              setState(() {
-                                item.sw = value;
-                              });
-                            },
-                            activeColor: Colors.cyan,
-                          ),
-                        ],
+                      title: Text(item.header),
+                      trailing: Switch(
+                        value: item.sw,
+                        onChanged: (value) {
+                          setState(() {
+                            for(int i =0;i<_items.length;i++){_items[i].sw = false;}
+                            item.sw = value;
+                            roomType=item.header;
+                          });
+                        },
+                        activeColor: Colors.cyan,
                       ),
                       leading: Image(
                         image: AssetImage(item.leading),

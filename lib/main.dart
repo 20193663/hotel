@@ -5,7 +5,7 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // name: 'hotel',
+    name: 'hotel',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
