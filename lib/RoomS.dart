@@ -85,7 +85,7 @@ class _RoomState extends State<Room> {
   }
 
   final DatabaseReference _databaseReference =
-      FirebaseDatabase.instance.ref().child("hotel");
+      FirebaseDatabase.instance.ref().child("/hotel");
 
   senddata() {
     _databaseReference.push().set({
