@@ -51,7 +51,7 @@ class _homeState extends State<home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "home",
+          "Royal Hotels",
           style: TextStyle(
             fontFamily: "DancingScript",
             fontSize: 30,
