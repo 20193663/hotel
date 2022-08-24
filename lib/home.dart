@@ -46,6 +46,8 @@ class _homeState extends State<home> {
   double _Sadult = 0.0;
   double _Schildren = 0.0;
 
+  String _extra="";
+  String _view="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,19 +165,19 @@ class _homeState extends State<home> {
                     CheckboxGroup(
                       labels: <String>["brackfast (50EGP/Day)", "Wifi (50EGP/Day)", "parking (100EGP/Day)"],
                       onSelected: (List<String> checked) =>
-                          print(checked.toString()),
+                          _extra=checked.toString(),
                     ),
                     Text("View",
                       style: TextStyle(color: Colors.cyan),
                     ),
                     RadioButtonGroup(
                       labels: <String>["Garden view", "Sea view"],
-                      onSelected: (String selected) => print(selected),
+                      onSelected: (String selected) => _view=selected,
                     )
                   ],
                 ),
                 ElevatedButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Room(),)),
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Room(checkin: _CheckIN,checkout: _CheckOut,Sadult: _Sadult,Schildren: _Schildren,extra: _extra,view: _view),)),
                     child: Text("check room and rates"),
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(Size(50, 20)),

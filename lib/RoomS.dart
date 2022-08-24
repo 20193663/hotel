@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Room extends StatefulWidget {
-  const Room({Key? key}) : super(key: key);
+  DateTime checkin,checkout;
+  String extra,view;
+  double Sadult;
+  double Schildren;
+   Room({Key? key ,required this.checkin,required this.checkout,required this.Sadult,required this.Schildren,required this.extra,required this.view,}) : super(key: key);
 
   @override
   State<Room> createState() => _RoomState();
@@ -15,39 +19,56 @@ class MyItem {
   final String leading;
   double userRating;
   bool sw;
-  MyItem(
-      {this.isExpanded = false,
-      required this.header,
-      required this.body,
-      required this.leading,
-      this.sw = false,
-        required this.userRating,
-      });
+  MyItem({
+    this.isExpanded = false,
+    required this.header,
+    required this.body,
+    required this.leading,
+    this.sw = false,
+    required this.userRating,
+  });
 }
 
 class _RoomState extends State<Room> {
   final List<MyItem> _items = <MyItem>[
     MyItem(
-      header: "Single Room",
-      body: "A room for one prison.",
-      leading: "images/single.png",
-      userRating: 4
-    ),
+        header: "Single Room",
+        body: "A room for one prison.",
+        leading: "images/single.png",
+        userRating: 4),
     MyItem(
-      header: "Double Room",
-      body: "A room for two prison may have one or more beds.",
-      leading: "images/double.png",
-        userRating: 4
-    ),
+        header: "Double Room",
+        body: "A room for two prison may have one or more beds.",
+        leading: "images/double.png",
+        userRating: 4),
     MyItem(
-      header: "Suite Room",
-      body: "A room may include multiple rooms and one livening room.",
-      leading: "images/suite.png",
-        userRating: 5
-    ),
+        header: "Suite Room",
+        body: "A room may include multiple rooms and one livening room.",
+        leading: "images/suite.png",
+        userRating: 5),
   ];
   // ring bar
-  double _userRating = 5.0;
+  //AlertDialog
+  void shoeAlertDialog(BuildContext context) {
+    var alertDialog = AlertDialog(
+      title: Text("Are you sure"),
+      content: Text(" Confirm or Discared"),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text("Confirm"),
+        ),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text("Discared"),
+        ),
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (context) => alertDialog,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +124,7 @@ class _RoomState extends State<Room> {
                     title: Row(
                       children: [
                         RatingBarIndicator(
-                          rating: _userRating,
+                          rating: item.userRating,
                           itemBuilder: (context, index) => Icon(
                             Icons.star,
                             color: Colors.amber,
@@ -125,7 +146,12 @@ class _RoomState extends State<Room> {
               },
             ).toList(),
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Book Now!")),
+          ElevatedButton(
+            onPressed: () => shoeAlertDialog(context),
+            child: Text("Book Now!"),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.cyan)),
+          ),
         ],
       ),
     );
