@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: home(),
+      theme: ThemeData.dark(),
       routes: {
         'home': (context) => home(),
         'home': (context) => home(),
