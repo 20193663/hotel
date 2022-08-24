@@ -67,6 +67,7 @@ class _RoomState extends State<Room> {
         ElevatedButton(
           onPressed: () {
             senddata();
+            print("send data is successes");
             Navigator.pushNamed(context, "home");
           },
           child: Text("Confirm"),
@@ -96,7 +97,6 @@ class _RoomState extends State<Room> {
       "children": "${widget.Schildren}",
       "type": "${roomType}",
     });
-    print("send data is successes");
   }
 
   @override
