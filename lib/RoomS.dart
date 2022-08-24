@@ -31,7 +31,7 @@ class MyItem {
 }
 
 class _RoomState extends State<Room> {
-
+  String roomType="";
   final List<MyItem> _items = <MyItem>[
     MyItem(
         header: "Single Room",
@@ -84,7 +84,7 @@ class _RoomState extends State<Room> {
       "view":"${widget.view}",
       "adult":"${widget.Sadult}",
       "children":"${widget.Schildren}",
-      "type":"${widget.extra}",
+      "type":"${roomType}",
     });
     print("send data is successes");
   }
